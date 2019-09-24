@@ -15,4 +15,4 @@ RUN true \
     && true
 
 #                  --verbose DEVEL
-CMD oscap-chroot / xccdf eval --profile xccdf_org.ssgproject.content_profile_ospp --report /tmp/report.html /var/lib/content/ssg-fedora-ds-1.3.xml
+CMD oscap-chroot / xccdf eval --fetch-remote-resources --profile xccdf_org.ssgproject.content_profile_ospp --report /tmp/report.html /var/lib/content/ssg-rhel8-ds.xml
