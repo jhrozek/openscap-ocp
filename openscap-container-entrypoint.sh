@@ -30,7 +30,7 @@ if [ ! -z $RULE ]; then
     cmd+=(--rule $RULE)
 fi
 
-cmd+=(--report $REPORT)
+cmd+=(--report $REPORT_DIR)
 cmd+=($CONTENT)
 
 echo "Running oscap-chroot"
