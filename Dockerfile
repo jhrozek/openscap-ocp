@@ -15,4 +15,5 @@ RUN true \
     && true
 
 #                  --verbose DEVEL
-CMD oscap-chroot / xccdf eval --fetch-remote-resources --profile xccdf_org.ssgproject.content_profile_ospp --report /tmp/report.html /var/lib/content/ssg-rhel8-ds.xml
+ENTRYPOINT ["ocap-chroot", "/host", "xccdf", "eval", "--fetch-remote-resources"]
+CMD ["--profile", "xccdf_org.ssgproject.content_profile_ospp", "--rule", "xccdf_org.ssgproject.content_rule_no_empty_passwords", "--report", "/tmp/report.html", "/var/lib/content/ssg-rhel8-ds.xml"]
