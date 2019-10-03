@@ -24,15 +24,18 @@ cmd=(
     oscap-chroot $HOSTROOT xccdf eval \
     --fetch-remote-resources \
     --profile $PROFILE
+    --report /tmp/report.xml
     )
 
 if [ ! -z $RULE ]; then
     cmd+=(--rule $RULE)
 fi
 
-cmd+=(--report $REPORT_DIR/report.xml)
 cmd+=($CONTENT)
 
-echo "Running oscap-chroot"
-echo "${cmd[@]}"
+# The whole purpose of the shell entrypoint is to semi-atomically
+# move the results file when the command is done so the log collector
+# picks up the whole thing and not a partial file
+echo "Running oscap-chroot as ${cmd[@]}"
 "${cmd[@]}"
+test -f /tmp/report.xml && mv /tmp/report.xml $REPORT_DIR
