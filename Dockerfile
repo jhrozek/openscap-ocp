@@ -1,4 +1,4 @@
-FROM fedora
+FROM registry.access.redhat.com/ubi8/ubi-minimal
 
 LABEL \
     name="openscap-ocp4" \
@@ -9,9 +9,12 @@ LABEL \
 COPY \
     content/*.xml /var/lib/content/
 
+COPY \
+    jhrozek-openscap-with-chroot-epel-8.repo /etc/yum.repos.d/
+
 RUN true \
-    && yum install -y openscap-scanner \
-    && yum clean all \
+    && microdnf install -y openscap-scanner \
+    && microdnf clean all \
     && true
 
 COPY ./openscap-container-entrypoint.sh /
