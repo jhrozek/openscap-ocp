@@ -1,0 +1,44 @@
+# This pod definition is meant for illustration and debugging. The
+# init container would copy everything from /var/lib/content/*.xml
+# to the volume mounted at /content, then the scanner would just
+# sleep.
+#
+# You then need to run the scan yourself. First, rsh into the container:
+#  # oc rsh --container openscap-scanner pods/scanner-test sh
+# and then run the scan with something like:
+#   # oscap-chroot /host xccdf eval --fetch-remote-resources \
+#                 --profile xccdf_org.ssgproject.content_profile_coreos-fedramp \
+#                 --report /tmp/report.xml \
+#                 /content/ssg-ocp4-ds.xml
+# or just examine the content:
+#   # oscap info /content/ssg-ocp4-ds.xml
+
+apiVersion: "v1"
+kind: Pod
+metadata:
+    name: scanner-test
+spec:
+    initContainers:
+        - name: content-container
+          image: quay.io/jhrozek/ocp4-openscap-content:latest
+          imagePullPolicy: Always
+          command: ["sh", "-c", "cp /var/lib/content/*.xml /content"]
+          volumeMounts:
+              - mountPath: "/content"
+                name: content-volume
+    containers:
+        - name: openscap-scanner
+          image: quay.io/jhrozek/openscap-ocp:latest
+          command: ["sh", "-c", "sleep 3600"]
+          volumeMounts:
+              - mountPath: "/content"
+                name: content-volume
+              - mountPath: "/host"
+                name: host-root
+    restartPolicy: Never
+    volumes:
+        - name: content-volume
+          emptyDir: {}
+        - name: host-root
+          hostPath:
+              path: /
