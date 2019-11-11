@@ -18,11 +18,11 @@ in Fedora COPR.
 
 ## Configuration options
 The configuration is done with environment variables. These are mandatory:
-    - `HOSTROOT` - The location of the host filesystem mounted to the
-                 container with a volume
-    - `PROFILE` - The OpenSCAP profile to scan with
-    - `CONTENT` - The OpenSCAP XML content which contains the profile
-    - `REPORT_DIR` - The location where the XML report would be written
+ * `HOSTROOT` - The location of the host filesystem mounted to the
+              container with a volume
+ * `PROFILE` - The OpenSCAP profile to scan with
+ * `CONTENT` - The OpenSCAP XML content which contains the profile
+ * `REPORT_DIR` - The location where the XML report would be written
 
 This env variable is optional:
-    - `RULE` - Only run a single rule from the profile
+ * `RULE` - Only run a single rule from the profile
