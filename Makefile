@@ -1,9 +1,9 @@
 APP_NAME=openscap-ocp
 
-REPO?=quay.io/repository/jhrozek
+REPO?=quay.io/jhrozek
 CNT_RUNTIME?=podman
 
-.PHONY: build tag-latest tag-branch push-latest push-branch
+.PHONY: build build-nocache tag-latest tag-branch push-latest push-branch
 
 all: build
 
@@ -23,4 +23,4 @@ push-latest:
 	$(CNT_RUNTIME) push $(REPO)/$(APP_NAME):latest
 
 push-branch:
-	$(CNT_RUNTIME) tag $(APP_NAME) $(REPO)/$(APP_NAME):$(shell git rev-parse --abbrev-ref HEAD)
+	$(CNT_RUNTIME) push $(APP_NAME) $(REPO)/$(APP_NAME):$(shell git rev-parse --abbrev-ref HEAD)
