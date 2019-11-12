@@ -9,9 +9,6 @@ LABEL \
     io.openshift.wants="scap-content"
 
 COPY \
-    content/*.xml /var/lib/content/
-
-COPY \
     jhrozek-openscap-with-chroot-epel-8.repo /etc/yum.repos.d/
 
 RUN true \
