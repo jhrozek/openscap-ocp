@@ -22,7 +22,7 @@ spec:
         - name: content-container
           image: quay.io/jhrozek/ocp4-openscap-content:latest
           imagePullPolicy: Always
-          command: ["sh", "-c", "cp /var/lib/content/*.xml /content"]
+          command: ["sh", "-c", "cp /*.xml /content"]
           volumeMounts:
               - mountPath: "/content"
                 name: content-volume

@@ -23,8 +23,9 @@ fi
 cmd=(
     oscap-chroot $HOSTROOT xccdf eval \
     --fetch-remote-resources \
-    --profile $PROFILE
-    --report /tmp/report.xml
+    --profile $PROFILE \
+    --report /tmp/scan-report.xml \
+    --results-arf /tmp/report.xml
     )
 
 if [ ! -z $RULE ]; then
