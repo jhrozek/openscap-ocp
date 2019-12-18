@@ -38,4 +38,7 @@ cmd+=($CONTENT)
 # picks up the whole thing and not a partial file
 echo "Running oscap-chroot as ${cmd[@]}"
 "${cmd[@]}"
+rv=$?
+echo "The scanner returned $rv"
 test -f /tmp/report.xml && mv /tmp/report.xml $REPORT_DIR
+exit $rv
