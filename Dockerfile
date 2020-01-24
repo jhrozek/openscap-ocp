@@ -9,7 +9,7 @@ LABEL \
     io.openshift.wants="scap-content"
 
 COPY \
-    jhrozek-openscap-with-chroot-epel-8.repo /etc/yum.repos.d/
+    jhrozek-openscap-8-2-rebuild.repo /etc/yum.repos.d/
 
 RUN true \
     && microdnf install -y openscap-scanner \
