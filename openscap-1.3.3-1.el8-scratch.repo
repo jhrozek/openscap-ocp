@@ -1,0 +1,6 @@
+[brew-task-repo-openscap-1.3.3-1.el8-scratch]
+name=Repo for Brew scratch build of openscap-1.3.3-1.el8
+enabled=1
+gpgcheck=0
+baseurl=http://brew-task-repos.usersys.redhat.com/repos/scratch/jhrozek/openscap/1.3.3/1.el8/$basearch/
+module_hotfixes=1
