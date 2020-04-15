@@ -1,0 +1,11 @@
+[copr:copr.fedorainfracloud.org:jhrozek:openscap-8-3-preview]
+name=Copr repo for openscap-8-3-preview owned by jhrozek
+baseurl=https://download.copr.fedorainfracloud.org/results/jhrozek/openscap-8-3-preview/epel-8-$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://download.copr.fedorainfracloud.org/results/jhrozek/openscap-8-3-preview/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+
